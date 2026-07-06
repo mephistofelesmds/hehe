@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Факультеты — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+        }
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .intro-text {
+            font-size: 1rem;
+            color: #b58fd9;
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Краткий обзор */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .overview-card {
+            background: rgba(20,0,40,0.7);
+            border: 1px solid #5c00b0;
+            border-radius: 6px;
+            padding: 16px 18px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(100,0,200,0.2);
+        }
+        .overview-card:hover {
+            transform: translateY(-2px);
+        }
+        .overview-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: #e000ff;
+            margin-bottom: 4px;
+        }
+        .overview-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #ffcfff;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+        .overview-desc {
+            font-size: 0.8rem;
+            color: #b58fd9;
+            line-height: 1.4;
+        }
+
+        /* Разделитель */
+        .divider {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #7a00ff, #f200ff, #7a00ff, transparent);
+            margin: 40px 0;
+            box-shadow: 0 0 20px #b000ff;
+        }
+
+        /* Детальные факультеты */
+        .section-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            color: #d4a0ff;
+            text-shadow: 0 0 12px #b000ff;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .faculties-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .faculty-card {
+            background: rgba(20,0,40,0.7);
+            border: 1px solid #5c00b0;
+            border-radius: 8px;
+            padding: 20px 22px;
+            box-shadow: 0 0 20px rgba(100,0,200,0.2);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .faculty-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #c000ff, #f200ff, #c000ff, transparent);
+            opacity: 0.6;
+            transition: 0.4s;
+        }
+        .faculty-card:hover {
+            border-color: #d000ff;
+            transform: translateY(-4px);
+            background: rgba(30,0,60,0.8);
+        }
+        .faculty-card:hover::before {
+            opacity: 1;
+        }
+        .faculty-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: #c000ff;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        .faculty-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: #ffcfff;
+            text-shadow: 0 0 15px #d000ff;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+        .faculty-desc {
+            font-size: 0.9rem;
+            color: #b58fd9;
+            margin-bottom: 12px;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+        .disciplines {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .disciplines li {
+            background: rgba(80,0,140,0.5);
+            border: 1px solid #6a00c0;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            color: #daa0ff;
+            text-shadow: 0 0 4px #7000b0;
+            transition: 0.2s;
+        }
+        .teacher-tag {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #ffb3ff;
+            border-left: 2px solid #d000ff;
+            padding-left: 10px;
+            text-shadow: 0 0 6px #a000d0;
+            font-weight: 600;
+        }
+        .extra-note {
+            font-size: 0.85rem;
+            color: #c090e0;
+            margin-top: 10px;
+            font-style: italic;
+            text-shadow: 0 0 4px #6000b0;
+        }
+
+        /* Общие предметы */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            color: #d4a0ff;
+            text-shadow: 0 0 12px #b000ff;
+            margin: 40px 0 20px;
+            letter-spacing: 1px;
+            border-bottom: 1px dashed #5c00b0;
+            padding-bottom: 10px;
+        }
+        .common-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 8px;
+            list-style: none;
+        }
+        .common-grid li {
+            background: rgba(25,0,45,0.7);
+            border: 1px solid #4a0080;
+            padding: 10px 14px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #cfa0f0;
+            text-align: center;
+            transition: 0.3s;
+            text-shadow: 0 0 4px #6000a0;
+        }
+        .common-grid li:hover {
+            border-color: #c000ff;
+            box-shadow: 0 0 15px rgba(160,0,255,0.4);
+            color: #fff;
+        }
+
+        @media (max-width: 700px) {
+            .faculties-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Факультеты</h1>
+            <p class="intro-text">Поскольку вуз специализированный, факультетов немного.</p>
+        </header>
+
+        <!-- КРАТКИЙ ОБЗОР ВСЕХ ФАКУЛЬТЕТОВ (из первого списка) -->
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="overview-num">1.</div>
+                <div class="overview-name">Криминалистика</div>
+                <div class="overview-desc">Самый популярный. Изучают: осмотр места преступления, анализ ДНК, цифровые следы, баллистику, биометрию, работу с андроидами, судебную медицину. Здесь преподаёт Жан Ренье.</div>
+            </div>
+            <div class="overview-card">
+                <div class="overview-num">2.</div>
+                <div class="overview-name">Следственное дело</div>
+                <div class="overview-desc">Будущие следователи. Допрос, психология, юридическая практика, расследования, ведение дел.</div>
+            </div>
+            <div class="overview-card">
+                <div class="overview-num">3.</div>
+                <div class="overview-name">Киберпреступность</div>
+                <div class="overview-desc">Будущие специалисты по: хакерам, ИИ, вирусам, цифровой разведке, восстановлению удалённых данных.</div>
+            </div>
+            <div class="overview-card">
+                <div class="overview-num">4.</div>
+                <div class="overview-name">Тактическая подготовка</div>
+                <div class="overview-desc">Будущие оперативники. Стрельба, задержания, пилотирование, работа в группе, антитеррор.</div>
+            </div>
+            <div class="overview-card">
+                <div class="overview-num">5.</div>
+                <div class="overview-name">Судебная медицина</div>
+                <div class="overview-desc">Всё, что связано с телами людей и андроидов.</div>
+            </div>
+            <div class="overview-card">
+                <div class="overview-num">6.</div>
+                <div class="overview-name">Аналитика и прогнозирование преступности</div>
+                <div class="overview-desc">Очень престижный факультет. Работа с ИИ, который прогнозирует преступления по огромным массивам данных.</div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ДЕТАЛЬНЫЕ ФАКУЛЬТЕТЫ (из второго списка) -->
+        <h2 class="section-label">Подробное описание факультетов</h2>
+
+        <div class="faculties-grid">
+
+            <!-- Факультет I -->
+            <div class="faculty-card">
+                <div class="faculty-num">ФАКУЛЬТЕТ I</div>
+                <h2 class="faculty-name">Криминалистика и судебная экспертиза</h2>
+                <p class="faculty-desc">Самый престижный факультет академии. Студентов учат искать доказательства, анализировать улики и восстанавливать картину преступления.</p>
+                <p class="faculty-desc" style="font-weight:600; color:#d4a0ff;">Основные дисциплины:</p>
+                <ul class="disciplines">
+                    <li>Общая криминалистика</li>
+                    <li>Судебная фотография</li>
+                    <li>Трасология</li>
+                    <li>Дактилоскопия</li>
+                    <li>Баллистика</li>
+                    <li>Анализ ДНК</li>
+                    <li>Судебная химия</li>
+                    <li>Исследование цифровых носителей</li>
+                    <li>Анализ места преступления</li>
+                    <li>Работа с криминалистическими дронами</li>
+                    <li>Осмотр кибернетических имплантов</li>
+                    <li>Судебная документация</li>
+                </ul>
+                <span class="teacher-tag">Преподаватель: Жан Ренье</span>
+            </div>
+
+            <!-- Факультет II -->
+            <div class="faculty-card">
+                <div class="faculty-num">ФАКУЛЬТЕТ II</div>
+                <h2 class="faculty-name">Следственное дело</h2>
+                <p class="faculty-desc">Для будущих следователей. Именно они ведут расследование и собирают дело полностью.</p>
+                <p class="faculty-desc" style="font-weight:600; color:#d4a0ff;">Изучают:</p>
+                <ul class="disciplines">
+                    <li>Уголовное право</li>
+                    <li>Процессуальное право</li>
+                    <li>Психологию преступника</li>
+                    <li>Допрос</li>
+                    <li>Составление обвинения</li>
+                    <li>Ведение расследования</li>
+                    <li>Оперативное планирование</li>
+                    <li>Управление следственной группой</li>
+                </ul>
+                <p class="extra-note">Практика — постоянные учебные расследования.</p>
+            </div>
+
+            <!-- Факультет III -->
+            <div class="faculty-card">
+                <div class="faculty-num">ФАКУЛЬТЕТ III</div>
+                <h2 class="faculty-name">Киберпреступность и цифровая безопасность</h2>
+                <p class="faculty-desc">Самый современный факультет. Здесь учатся лучшие программисты.</p>
+                <p class="faculty-desc" style="font-weight:600; color:#d4a0ff;">Изучают:</p>
+                <ul class="disciplines">
+                    <li>Взлом</li>
+                    <li>Цифровую криминалистику</li>
+                    <li>Вирусы</li>
+                    <li>ИИ</li>
+                    <li>Нейросети</li>
+                    <li>Безопасность имплантов</li>
+                    <li>Расследование преступлений в виртуальной среде</li>
+                    <li>Поиск удалённых данных</li>
+                </ul>
+                <p class="extra-note">Практические экзамены проходят полностью в виртуальной реальности.</p>
+            </div>
+
+            <!-- Факультет IV -->
+            <div class="faculty-card">
+                <div class="faculty-num">ФАКУЛЬТЕТ IV</div>
+                <h2 class="faculty-name">Оперативно-тактическая подготовка</h2>
+                <p class="faculty-desc">Будущие оперативники. Очень много физической подготовки.</p>
+                <p class="faculty-desc" style="font-weight:600; color:#d4a0ff;">Изучают:</p>
+                <ul class="disciplines">
+                    <li>Стрельбу</li>
+                    <li>Рукопашный бой</li>
+                    <li>Работу в группе</li>
+                    <li>Тактику штурма</li>
+                    <li>Пилотирование транспорта</li>
+                    <li>Использование служебных дронов</li>
+                    <li>Переговоры</li>
+                    <li>Освобождение заложников</li>
+                </ul>
+            </div>
+
+            <!-- Факультет V -->
+            <div class="faculty-card">
+                <div class="faculty-num">ФАКУЛЬТЕТ V</div>
+                <h2 class="faculty-name">Судебная медицина и биоаналитика</h2>
+                <p class="faculty-desc">Работа с телами людей, животных и андроидов.</p>
+                <p class="faculty-desc" style="font-weight:600; color:#d4a0ff;">Изучают:</p>
+                <ul class="disciplines">
+                    <li>Анатомию</li>
+                    <li>Патологоанатомию</li>
+                    <li>Токсикологию</li>
+                    <li>Генетику</li>
+                    <li>Вскрытие</li>
+                    <li>Анализ биоматериалов</li>
+                    <li>Исследование биомодификаций</li>
+                    <li>Идентификацию личности</li>
+                </ul>
+                <p class="extra-note">Студенты часто работают вместе с криминалистами.</p>
+            </div>
+
+            <!-- Факультет VI -->
+            <div class="faculty-card">
+                <div class="faculty-num">ФАКУЛЬТЕТ VI</div>
+                <h2 class="faculty-name">Психология и переговоры</h2>
+                <p class="faculty-desc">Не такой большой, но очень важный.</p>
+                <p class="faculty-desc" style="font-weight:600; color:#d4a0ff;">Изучают:</p>
+                <ul class="disciplines">
+                    <li>Психологию</li>
+                    <li>Профайлинг</li>
+                    <li>Поведенческий анализ</li>
+                    <li>Переговоры</li>
+                    <li>Работу с заложниками</li>
+                    <li>Кризисную коммуникацию</li>
+                    <li>Ложь</li>
+                    <li>Эмоциональный интеллект</li>
+                </ul>
+            </div>
+
+            <!-- Факультет VII -->
+            <div class="faculty-card">
+                <div class="faculty-num">ФАКУЛЬТЕТ VII</div>
+                <h2 class="faculty-name">Аналитика и прогнозирование</h2>
+                <p class="faculty-desc">Самый сложный факультет. Туда поступают лучшие из лучших.</p>
+                <p class="faculty-desc" style="font-weight:600; color:#d4a0ff;">Изучают:</p>
+                <ul class="disciplines">
+                    <li>Анализ больших данных</li>
+                    <li>ИИ</li>
+                    <li>Прогнозирование преступности</li>
+                    <li>Городскую статистику</li>
+                    <li>Поведение толпы</li>
+                    <li>Работу корпоративных сетей</li>
+                    <li>Моделирование катастроф</li>
+                </ul>
+                <p class="extra-note">Выпускников часто сразу забирают в аналитические центры полиции или корпораций.</p>
+            </div>
+        </div>
+
+        <!-- ОБЩИЕ ПРЕДМЕТЫ -->
+        <h2 class="section-title">Общие предметы (изучают все)</h2>
+        <p style="color:#b58fd9; margin-bottom:15px; font-style:italic;">Независимо от факультета, первые два курса все проходят общую подготовку:</p>
+        <ul class="common-grid">
+            <li>История Кибергейта</li>
+            <li>Законодательство мегаполиса</li>
+            <li>Основы криминалистики</li>
+            <li>Этика сотрудника полиции</li>
+            <li>Тактическая медицина</li>
+            <li>Самооборона</li>
+            <li>Работа с ИИ</li>
+            <li>Основы кибербезопасности</li>
+            <li>Первая помощь</li>
+            <li>Использование служебных дронов</li>
+            <li>Основы обращения с оружием</li>
+            <li>Командная работа</li>
+            <li>Физическая подготовка</li>
+        </ul>
+    </div>
+</body>
+</html>

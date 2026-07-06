@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Где находится — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Специфичные стили для страницы локации */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .location-block {
+            background: rgba(20, 0, 40, 0.7);
+            border: 1px solid #5c00b0;
+            border-radius: 6px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 0 25px rgba(100, 0, 200, 0.2);
+        }
+
+        .quarter-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #ffb3ff;
+            letter-spacing: 3px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #c9a0f0;
+            margin-bottom: 25px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .buildings-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .buildings-list li {
+            background: rgba(60, 0, 100, 0.5);
+            border: 1px solid #7a00ff;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-family: 'Exo 2', sans-serif;
+            color: #d9b3ff;
+            text-shadow: 0 0 6px #9000d0;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .buildings-list li::before {
+            content: "[⌘]";
+            color: #c000ff;
+            font-family: monospace;
+            text-shadow: 0 0 12px #d000ff;
+            animation: icon-pulse 2s infinite;
+        }
+
+        .funding-section {
+            margin-top: 35px;
+            border-top: 1px dashed #5c00b0;
+            padding-top: 25px;
+        }
+
+        .funding-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #d4a0ff;
+            text-shadow: 0 0 10px #b000ff;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .funding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .funder-card {
+            background: rgba(15, 0, 35, 0.8);
+            border: 1px solid #4a0080;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .funder-card:hover {
+            border-color: #d000ff;
+            background: rgba(40, 0, 80, 0.6);
+        }
+
+        .funder-name {
+            font-weight: 700;
+            color: #e0b0ff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #9000e0;
+            margin-bottom: 5px;
+        }
+
+        .funder-note {
+            font-size: 0.8rem;
+            color: #9a6dc9;
+            font-style: italic;
+        }
+
+        .warning-note {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(180, 0, 80, 0.15);
+            border-left: 3px solid #d000ff;
+            color: #d9b3ff;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 5px #a00090;
+        }
+
+        @keyframes icon-pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; text-shadow: 0 0 20px #ff00ea; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Где находится</h1>
+        </header>
+
+        <section class="location-block">
+            <h2 class="quarter-name">Альфа-квартал</h2>
+            <p class="description">
+                Огромный комплекс из стекла и бетона. Все здания соединены крытыми переходами, образующими единую сеть, защищённую от внешней среды.
+            </p>
+
+            <ul class="buildings-list">
+                <li>Главный корпус</li>
+                <li>Корпус криминалистики</li>
+                <li>Центр виртуальных симуляций</li>
+                <li>Тир</li>
+                <li>Лаборатории</li>
+                <li>Морг</li>
+                <li>Тренировочный полигон</li>
+                <li>Общежитие</li>
+            </ul>
+        </section>
+
+        <section class="funding-section">
+            <h2 class="funding-title">Кто финансирует</h2>
+
+            <div class="funding-grid">
+                <div class="funder-card">
+                    <div class="funder-name">Полиция</div>
+                    <div class="funder-note">основной бюджет</div>
+                </div>
+                <div class="funder-card">
+                    <div class="funder-name">Городская администрация</div>
+                    <div class="funder-note">гранты и субсидии</div>
+                </div>
+                <div class="funder-card">
+                    <div class="funder-name">NEURODYNE SYSTEMS</div>
+                    <div class="funder-note">оборудование</div>
+                </div>
+                <div class="funder-card">
+                    <div class="funder-name">VERIDIAN GROVE</div>
+                    <div class="funder-note">биолаборатории</div>
+                </div>
+            </div>
+
+            <div class="warning-note">
+                Формально университет независимый. Фактически его содержат корпорации. Из-за этого NEURODYNE SYSTEMS и VERIDIAN GROVE постоянно пытаются переманить лучших студентов.
+            </div>
+        </section>
+    </div>
+</body>
+</html>

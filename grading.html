@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Академическая система оценки — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-intro {
+            color: #b57edc;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Большая цифра 100 */
+        .score-hero {
+            text-align: center;
+            margin: 20px 0 30px;
+        }
+
+        .score-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: #ffb3ff;
+            text-shadow: 0 0 30px #d000ff, 0 0 60px #a000e0, 0 0 100px #6000a0;
+            letter-spacing: 5px;
+            display: block;
+            animation: score-pulse 3s infinite;
+        }
+
+        @keyframes score-pulse {
+            0%, 100% { text-shadow: 0 0 30px #d000ff, 0 0 60px #a000e0, 0 0 100px #6000a0; }
+            50% { text-shadow: 0 0 50px #ff00f2, 0 0 90px #c000ff, 0 0 140px #8000d0; }
+        }
+
+        .score-label {
+            color: #9a6dc9;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .score-min {
+            color: #c080ff;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        .score-min span {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffb3ff;
+            text-shadow: 0 0 10px #d000ff;
+            font-weight: 700;
+        }
+
+        /* Компоненты оценки */
+        .components-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .component-card {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 0;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .component-card:hover {
+            border-color: #9d00ff;
+            box-shadow: 0 0 25px rgba(140, 0, 255, 0.3);
+        }
+
+        .component-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            cursor: default;
+        }
+
+        .component-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: #e0b0ff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #a000d0;
+        }
+
+        .component-score {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffb3ff;
+            text-shadow: 0 0 15px #d000ff;
+            letter-spacing: 1px;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .component-body {
+            padding: 0 22px 18px;
+            border-top: 1px solid #3a0060;
+            padding-top: 15px;
+        }
+
+        .component-desc {
+            color: #b57edc;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .component-details {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .component-details li {
+            background: rgba(60, 0, 100, 0.4);
+            border: 1px solid #5c00b0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #d9b3ff;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+
+        .component-details li:hover {
+            background: rgba(120, 0, 200, 0.4);
+            border-color: #c000ff;
+            color: #ffffff;
+            text-shadow: 0 0 6px #ff00ea;
+        }
+
+        /* Шкала посещаемости */
+        .attendance-scale {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .attendance-item {
+            background: rgba(25, 0, 45, 0.7);
+            border: 1px solid #5c00b0;
+            border-radius: 6px;
+            padding: 10px 16px;
+            text-align: center;
+            transition: 0.3s;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .attendance-item:hover {
+            border-color: #c000ff;
+            box-shadow: 0 0 12px rgba(150, 0, 255, 0.3);
+        }
+
+        .attendance-percent {
+            font-family: 'Orbitron', sans-serif;
+            color: #e0b0ff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        .attendance-points {
+            color: #9a6dc9;
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+
+        .attendance-fail {
+            border-color: #800030;
+            background: rgba(30, 0, 10, 0.5);
+        }
+
+        .attendance-fail .attendance-percent {
+            color: #ff6080;
+        }
+
+        /* Итоговая шкала */
+        .summary-bar {
+            margin-top: 25px;
+            background: rgba(10, 0, 20, 0.7);
+            border: 2px solid #7a00ff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(100, 0, 200, 0.2);
+        }
+
+        .summary-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: #e0b0ff;
+            text-shadow: 0 0 12px #b000ff;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .summary-formula {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .formula-part {
+            background: rgba(30, 0, 55, 0.7);
+            border: 1px solid #6a00c0;
+            border-radius: 6px;
+            padding: 10px 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .formula-part:hover {
+            border-color: #d000ff;
+            box-shadow: 0 0 15px rgba(160, 0, 255, 0.3);
+        }
+
+        .formula-score {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffb3ff;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px #d000ff;
+            display: block;
+        }
+
+        .formula-label {
+            color: #8b5cb0;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .formula-plus {
+            color: #c000ff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px #d000ff;
+        }
+
+        .formula-equals {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 15px #ffffff;
+        }
+
+        .formula-total {
+            background: rgba(50, 0, 100, 0.8);
+            border: 2px solid #b000ff;
+            box-shadow: 0 0 25px rgba(180, 0, 255, 0.4);
+        }
+
+        .pass-condition {
+            text-align: center;
+            margin-top: 15px;
+            color: #b57edc;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .pass-condition span {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffb3ff;
+            text-shadow: 0 0 10px #d000ff;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Академическая система оценки</h1>
+            <p class="section-intro">В университете нет привычных оценок от 2 до 5. Вместо этого используется рейтинговая система на 100 баллов для каждого предмета.</p>
+        </header>
+
+        <!-- Герой-цифра -->
+        <div class="score-hero">
+            <span class="score-number">100</span>
+            <span class="score-label">баллов</span>
+            <p class="score-min">Каждый семестр студент должен набрать не менее <span>60 баллов</span>, чтобы успешно закрыть дисциплину.</p>
+        </div>
+
+        <!-- Компоненты оценки -->
+        <div class="components-grid">
+            <!-- Посещаемость -->
+            <div class="component-card">
+                <div class="component-header">
+                    <span class="component-name">Посещаемость</span>
+                    <span class="component-score">10</span>
+                </div>
+                <div class="component-body">
+                    <div class="attendance-scale">
+                        <div class="attendance-item">
+                            <span class="attendance-percent">100%</span>
+                            <span class="attendance-points">10 баллов</span>
+                        </div>
+                        <div class="attendance-item">
+                            <span class="attendance-percent">90%</span>
+                            <span class="attendance-points">8 баллов</span>
+                        </div>
+                        <div class="attendance-item">
+                            <span class="attendance-percent">80%</span>
+                            <span class="attendance-points">6 баллов</span>
+                        </div>
+                        <div class="attendance-item attendance-fail">
+                            <span class="attendance-percent">менее 80%</span>
+                            <span class="attendance-points">недопуск к экзамену</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Активность -->
+            <div class="component-card">
+                <div class="component-header">
+                    <span class="component-name">Активность на занятиях</span>
+                    <span class="component-score">10</span>
+                </div>
+                <div class="component-body">
+                    <ul class="component-details">
+                        <li>Ответы</li>
+                        <li>Разбор кейсов</li>
+                        <li>Участие в обсуждениях</li>
+                        <li>Работа в группе</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Домашние задания -->
+            <div class="component-card">
+                <div class="component-header">
+                    <span class="component-name">Домашние задания</span>
+                    <span class="component-score">15</span>
+                </div>
+                <div class="component-body">
+                    <p class="component-desc">Не после каждой лекции. Обычно 3–5 крупных заданий за семестр.</p>
+                </div>
+            </div>
+
+            <!-- Практические работы -->
+            <div class="component-card">
+                <div class="component-header">
+                    <span class="component-name">Практические работы</span>
+                    <span class="component-score">25</span>
+                </div>
+                <div class="component-body">
+                    <p class="component-desc">Самая важная часть обучения.</p>
+                    <ul class="component-details">
+                        <li>Осмотр места преступления</li>
+                        <li>Поиск улик</li>
+                        <li>Анализ ДНК</li>
+                        <li>Работа с ИИ</li>
+                        <li>Вскрытие биоманекена</li>
+                        <li>Моделирование допроса</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Промежуточный тест -->
+            <div class="component-card">
+                <div class="component-header">
+                    <span class="component-name">Промежуточный тест</span>
+                    <span class="component-score">10</span>
+                </div>
+                <div class="component-body">
+                    <p class="component-desc">Проводится примерно в середине семестра.</p>
+                </div>
+            </div>
+
+            <!-- Финальный экзамен -->
+            <div class="component-card">
+                <div class="component-header">
+                    <span class="component-name">Финальный экзамен</span>
+                    <span class="component-score">30</span>
+                </div>
+                <div class="component-body">
+                    <p class="component-desc">Именно он определяет итоговую оценку.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Итоговая формула -->
+        <div class="summary-bar">
+            <h2 class="summary-title">Итоговая формула</h2>
+            <div class="summary-formula">
+                <div class="formula-part">
+                    <span class="formula-score">10</span>
+                    <span class="formula-label">Посещаемость</span>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-part">
+                    <span class="formula-score">10</span>
+                    <span class="formula-label">Активность</span>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-part">
+                    <span class="formula-score">15</span>
+                    <span class="formula-label">ДЗ</span>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-part">
+                    <span class="formula-score">25</span>
+                    <span class="formula-label">Практика</span>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-part">
+                    <span class="formula-score">10</span>
+                    <span class="formula-label">Тест</span>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-part">
+                    <span class="formula-score">30</span>
+                    <span class="formula-label">Экзамен</span>
+                </div>
+                <span class="formula-equals">=</span>
+                <div class="formula-part formula-total">
+                    <span class="formula-score">100</span>
+                    <span class="formula-label">Всего</span>
+                </div>
+            </div>
+            <p class="pass-condition">Для успешного закрытия дисциплины необходимо набрать не менее <span>60 баллов</span></p>
+        </div>
+    </div>
+</body>
+</html>

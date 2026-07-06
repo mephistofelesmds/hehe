@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>План кампуса — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-intro {
+            color: #b57edc;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Заглушка для изображения */
+        .image-placeholder {
+            background: rgba(15, 0, 30, 0.8);
+            border: 2px dashed #5c00b0;
+            border-radius: 10px;
+            padding: 50px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(120, 0, 200, 0.05), transparent);
+            animation: placeholder-shine 4s infinite;
+        }
+
+        @keyframes placeholder-shine {
+            0%, 100% { left: -100%; }
+            50% { left: 100%; }
+        }
+
+        .image-placeholder:hover {
+            border-color: #b000ff;
+            box-shadow: 0 0 30px rgba(140, 0, 255, 0.2);
+        }
+
+        .placeholder-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+            color: #5c00b0;
+            text-shadow: 0 0 15px #8000c0;
+            animation: icon-float 3s infinite;
+        }
+
+        @keyframes icon-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .placeholder-text {
+            color: #8b5cb0;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .placeholder-text span {
+            display: block;
+            color: #b57edc;
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        /* Карточка здания */
+        .building-card {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(80, 0, 180, 0.2);
+        }
+
+        .building-card:hover {
+            border-color: #9d00ff;
+            box-shadow: 0 0 30px rgba(140, 0, 255, 0.3);
+        }
+
+        .building-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .building-icon {
+            font-family: monospace;
+            font-size: 1.5rem;
+            color: #c000ff;
+            text-shadow: 0 0 12px #d000ff;
+            width: 35px;
+            text-align: center;
+        }
+
+        .building-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: #e0b0ff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px #a000d0;
+        }
+
+        .building-desc {
+            color: #b57edc;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .building-rooms {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .building-rooms li {
+            background: rgba(50, 0, 90, 0.5);
+            border: 1px solid #5c00b0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #d9b3ff;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+
+        .building-rooms li:hover {
+            background: rgba(100, 0, 180, 0.5);
+            border-color: #c000ff;
+            color: #ffffff;
+            text-shadow: 0 0 6px #ff00ea;
+        }
+
+        .building-note {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(20, 0, 35, 0.6);
+            border-left: 2px solid #8000c0;
+            color: #9a6dc9;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            font-style: italic;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Общежития */
+        .dorm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .dorm-card {
+            background: rgba(20, 0, 35, 0.7);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 18px;
+            transition: 0.3s;
+        }
+
+        .dorm-card:hover {
+            border-color: #b000ff;
+            box-shadow: 0 0 20px rgba(140, 0, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .dorm-grade {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #ffb3ff;
+            text-shadow: 0 0 15px #d000ff;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .dorm-type {
+            color: #e0b0ff;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .dorm-desc {
+            color: #9a6dc9;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+        }
+
+        .dorm-a {
+            border-top: 3px solid #d0a000;
+        }
+        .dorm-a .dorm-grade {
+            color: #ffe080;
+            text-shadow: 0 0 15px #d0a000;
+        }
+
+        .dorm-b {
+            border-top: 3px solid #8000c0;
+        }
+
+        .dorm-c {
+            border-top: 3px solid #505050;
+            opacity: 0.8;
+        }
+        .dorm-c .dorm-grade {
+            color: #a0a0a0;
+            text-shadow: 0 0 10px #707070;
+        }
+
+        /* Подземный уровень */
+        .restricted-card {
+            border-color: #800030;
+            border-left: 4px solid #c00030;
+            background: rgba(20, 0, 10, 0.7);
+        }
+
+        .restricted-card:hover {
+            border-color: #c00040;
+            box-shadow: 0 0 30px rgba(200, 0, 50, 0.3);
+        }
+
+        .restricted-card .building-icon {
+            color: #d00040;
+            text-shadow: 0 0 15px #c00030;
+        }
+
+        .restricted-card .building-name {
+            color: #ff8099;
+            text-shadow: 0 0 10px #c00030;
+        }
+
+        .restricted-badge {
+            display: inline-block;
+            background: rgba(200, 0, 50, 0.2);
+            border: 1px solid #c00030;
+            padding: 3px 10px;
+            border-radius: 15px;
+            color: #ff8099;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 6px #d00040;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">План кампуса</h1>
+            <p class="section-intro">Территория окружена высоким забором и системой безопасности. Войти можно только по университетской ID-карте. Внутри работают камеры, дроны и патрульные андроиды. На ночь кампус официально не закрывается, но доступ в большинство зданий ограничивается.</p>
+        </header>
+
+        <div style="border: 2px solid #7a00ff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 30px rgba(120, 0, 255, 0.4); margin: 15px 0;">
+            <img src="main-building.jpg" alt="Главный корпус" style="width: 100%; display: block;">
+        </div>
+
+        <!-- Главный корпус -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[M]</span>
+                <span class="building-name">Главный корпус</span>
+            </div>
+            <p class="building-desc">Самое большое здание. Именно сюда первокурсники приходят в первый день обучения.</p>
+
+            <div style="border: 2px solid #7a00ff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 30px rgba(120, 0, 255, 0.4); margin: 15px 0;">
+                <img src="1.jpg" alt="Главный корпус" style="width: 100%; display: block;">
+            </div>
+
+            <ul class="building-rooms">
+                <li>Приёмная комиссия</li>
+                <li>Кабинет ректора</li>
+                <li>Деканаты</li>
+                <li>Большие лекционные аудитории</li>
+                <li>Конференц-зал</li>
+                <li>Архив университета</li>
+                <li>Преподавательская</li>
+                <li>Актовый зал</li>
+                <li>Дисциплинарный комитет</li>
+            </ul>
+        </div>
+
+        <!-- Корпус криминалистики -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[C]</span>
+                <span class="building-name">Корпус криминалистики</span>
+            </div>
+            <p class="building-desc">Здание, где преподаёт Жан Ренье. На верхнем этаже располагаются кабинеты преподавателей.</p>
+
+            <div style="border: 2px solid #7a00ff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 30px rgba(120, 0, 255, 0.4); margin: 15px 0;">
+                <img src="2.jpg" alt="Главный корпус" style="width: 100%; display: block;">
+            </div>
+
+            <ul class="building-rooms">
+                <li>Аудитории</li>
+                <li>Лаборатории исследования улик</li>
+                <li>Баллистическая лаборатория</li>
+                <li>Лаборатория отпечатков</li>
+                <li>Центр анализа ДНК</li>
+                <li>Кабинет судебной фотографии</li>
+                <li>Хранилище учебных доказательств</li>
+                <li>Комнаты моделирования мест преступлений</li>
+            </ul>
+        </div>
+
+        <!-- Медико-биологический корпус -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[B]</span>
+                <span class="building-name">Медико-биологический корпус</span>
+            </div>
+            <p class="building-desc">Используется факультетом судебной медицины.</p>
+
+            <!-- Изображение: медико-биологический корпус -->
+            <div class="image-placeholder" style="padding: 30px 20px; margin: 15px 0;">
+                <span class="placeholder-icon" style="font-size: 2rem;">[ PHOTO ]</span>
+                <span class="placeholder-text">Медико-биологический корпус</span>
+                <span>Изображение будет добавлено позже</span>
+            </div>
+
+            <ul class="building-rooms">
+                <li>Анатомический театр</li>
+                <li>Учебный морг</li>
+                <li>Лаборатория токсикологии</li>
+                <li>Лаборатория биоматериалов</li>
+                <li>Секционная</li>
+                <li>Архив биологических образцов</li>
+            </ul>
+            <p class="building-note">Большинство первокурсников впервые попадает сюда только во втором семестре.</p>
+        </div>
+
+        <!-- Центр кибербезопасности -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[K]</span>
+                <span class="building-name">Центр кибербезопасности</span>
+            </div>
+            <p class="building-desc">Самое современное здание. Полностью покрыто экранирующими материалами. Именно здесь проходят экзамены по киберпреступности.</p>
+            <ul class="building-rooms">
+                <li>Серверные</li>
+                <li>Лаборатории взлома</li>
+                <li>VR-комплексы</li>
+                <li>Классы программирования</li>
+                <li>Комнаты цифровой криминалистики</li>
+                <li>Центр анализа искусственного интеллекта</li>
+            </ul>
+        </div>
+
+        <!-- Тактический центр -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[T]</span>
+                <span class="building-name">Тактический центр</span>
+            </div>
+            <p class="building-desc">Отдельное здание. Рядом расположен открытый полигон.</p>
+            <ul class="building-rooms">
+                <li>Стрелковый тир</li>
+                <li>Тренировочные комнаты</li>
+                <li>Спортивный зал</li>
+                <li>Полоса препятствий</li>
+                <li>Симулятор городского боя</li>
+                <li>Тренировочный полицейский участок</li>
+            </ul>
+        </div>
+
+        <!-- Центр виртуальных симуляций -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[V]</span>
+                <span class="building-name">Центр виртуальных симуляций</span>
+            </div>
+            <p class="building-desc">Одно из самых дорогих зданий академии. Содержит десятки VR-капсул. Практически все выпускные экзамены проходят именно здесь.</p>
+            <ul class="building-rooms">
+                <li>Квартира</li>
+                <li>Банк</li>
+                <li>Метро</li>
+                <li>Лаборатория</li>
+                <li>Улицы Неон-гетто</li>
+                <li>Офис корпорации</li>
+                <li>Место теракта</li>
+            </ul>
+        </div>
+
+        <!-- Библиотека -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[L]</span>
+                <span class="building-name">Библиотека</span>
+            </div>
+            <p class="building-desc">Современная, полностью цифровая. Большинство книг существует только в электронном виде.</p>
+            <ul class="building-rooms">
+                <li>Читальные залы</li>
+                <li>Архив уголовных дел</li>
+                <li>Терминалы доступа</li>
+                <li>Комнаты для самостоятельной подготовки</li>
+                <li>Небольшое кафе</li>
+            </ul>
+        </div>
+
+        <!-- Общежития -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[D]</span>
+                <span class="building-name">Общежития</span>
+            </div>
+            <p class="building-desc">Всего три корпуса.</p>
+            <div class="dorm-grid">
+                <div class="dorm-card dorm-a">
+                    <span class="dorm-grade">A</span>
+                    <div class="dorm-type">Корпус А</div>
+                    <p class="dorm-desc">Лучшие условия. Одноместные комнаты. Живут отличники, победители олимпиад и обладатели повышенной стипендии.</p>
+                </div>
+                <div class="dorm-card dorm-b">
+                    <span class="dorm-grade">B</span>
+                    <div class="dorm-type">Корпус B</div>
+                    <p class="dorm-desc">Самое обычное общежитие. Большинство студентов живёт именно здесь. Комнаты рассчитаны на двух человек.</p>
+                </div>
+                <div class="dorm-card dorm-c">
+                    <span class="dorm-grade">C</span>
+                    <div class="dorm-type">Корпус C</div>
+                    <p class="dorm-desc">Самое дешёвое. Старое здание. Комнаты теснее. Здесь часто селят студентов с невысоким рейтингом или тех, кто оплачивает минимальный тариф.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Столовая -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[F]</span>
+                <span class="building-name">Столовая</span>
+            </div>
+            <p class="building-desc">Большое двухэтажное помещение. Первый этаж — обычная еда. Второй этаж — кафе. Из-за экологии большая часть продуктов синтетическая. Настоящие овощи, мясо и фрукты стоят очень дорого.</p>
+        </div>
+
+        <!-- Медицинский центр -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[H]</span>
+                <span class="building-name">Медицинский центр</span>
+            </div>
+            <p class="building-desc">Работает круглосуточно. Помимо обычного лечения здесь обслуживают импланты, проводят диагностику, оказывают первую помощь и выдают препараты после практических занятий.</p>
+        </div>
+
+        <!-- Центральный двор -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[O]</span>
+                <span class="building-name">Центральный двор</span>
+            </div>
+            <p class="building-desc">Главная площадь университета. Здесь проходят посвящение первокурсников, научные выставки, День наук, награждения и праздничные мероприятия. В центре расположен памятник Элиасу Харрингтону.</p>
+        </div>
+
+        <!-- Учебный полигон -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[G]</span>
+                <span class="building-name">Учебный полигон</span>
+            </div>
+            <p class="building-desc">Небольшой искусственный район. Построен специально для обучения. Здесь преподаватели устраивают учебные преступления.</p>
+            <ul class="building-rooms">
+                <li>Жилой дом</li>
+                <li>Магазин</li>
+                <li>Банк</li>
+                <li>Переулки</li>
+                <li>Станция метро</li>
+                <li>Склад</li>
+                <li>Парковка</li>
+            </ul>
+        </div>
+
+        <!-- Парковка -->
+        <div class="building-card">
+            <div class="building-header">
+                <span class="building-icon">[P]</span>
+                <span class="building-name">Парковка</span>
+            </div>
+            <p class="building-desc">Огромная многоуровневая парковка. На крыше оборудована площадка для аэрокаров.</p>
+            <ul class="building-rooms">
+                <li>Автомобили</li>
+                <li>Мотоциклы</li>
+                <li>Ховер-скейты</li>
+                <li>Служебные дроны</li>
+            </ul>
+        </div>
+
+        <!-- Подземный уровень -->
+        <div class="building-card restricted-card">
+            <div class="building-header">
+                <span class="building-icon">[X]</span>
+                <span class="building-name">Подземный уровень</span>
+            </div>
+            <p class="building-desc">Доступен только преподавателям и старшим курсам с высоким уровнем допуска.</p>
+            <ul class="building-rooms">
+                <li>Центральный архив</li>
+                <li>Серверная университета</li>
+                <li>Склад вещественных доказательств</li>
+                <li>Лаборатории ограниченного доступа</li>
+                <li>Технические помещения</li>
+                <li>Резервный генератор</li>
+            </ul>
+            <span class="restricted-badge">ОГРАНИЧЕННЫЙ ДОСТУП</span>
+        </div>
+    </div>
+</body>
+</html>

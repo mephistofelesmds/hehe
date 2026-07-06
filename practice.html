@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-intro {
+            color: #b57edc;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        /* Карточки практики */
+        .practice-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .practice-card {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-left: 4px solid #8000c0;
+            border-radius: 6px;
+            padding: 22px 25px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .practice-card:hover {
+            border-left-color: #e000ff;
+            border-color: #9d00ff;
+            box-shadow: 0 0 25px rgba(140, 0, 255, 0.3);
+            transform: translateX(5px);
+        }
+
+        .practice-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(120, 0, 255, 0.05));
+            pointer-events: none;
+        }
+
+        .practice-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .practice-year {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #ffb3ff;
+            text-shadow: 0 0 20px #d000ff, 0 0 40px #8000c0;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .practice-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: #e0b0ff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px #a000d0;
+        }
+
+        .practice-desc {
+            color: #b57edc;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            padding-left: 10px;
+            border-left: 1px solid #4a0080;
+            margin-left: 5px;
+        }
+
+        /* Особые цвета для карточек */
+        .card-1 { border-left-color: #5c00b0; }
+        .card-1:hover { border-left-color: #a000ff; }
+        .card-1 .practice-year { color: #c080ff; text-shadow: 0 0 15px #8000c0; }
+
+        .card-2 { border-left-color: #7030c0; }
+        .card-2:hover { border-left-color: #b040ff; }
+
+        .card-3 { border-left-color: #8050d0; }
+        .card-3:hover { border-left-color: #c060ff; }
+
+        .card-4 { border-left-color: #9060e0; }
+        .card-4:hover { border-left-color: #d080ff; }
+
+        .card-5 {
+            border-left-color: #b000ff;
+            border-width: 1px 1px 1px 5px;
+        }
+        .card-5:hover {
+            border-left-color: #ff00ea;
+            box-shadow: 0 0 40px rgba(200, 0, 255, 0.5);
+        }
+        .card-5 .practice-year {
+            color: #ffffff;
+            text-shadow: 0 0 25px #ff00f2, 0 0 50px #c000ff;
+        }
+
+        /* Электронный профиль */
+        .profile-section {
+            margin-top: 35px;
+            border: 2px solid #7a00ff;
+            border-radius: 10px;
+            padding: 30px;
+            background: rgba(10, 0, 20, 0.7);
+            box-shadow: 0 0 30px rgba(100, 0, 200, 0.2);
+        }
+
+        .profile-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #e0b0ff;
+            text-shadow: 0 0 15px #b000ff;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .profile-subtitle {
+            color: #9a6dc9;
+            text-align: center;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .profile-item {
+            background: rgba(20, 0, 35, 0.8);
+            border: 1px solid #5c00b0;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .profile-item:hover {
+            border-color: #d000ff;
+            box-shadow: 0 0 20px rgba(160, 0, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .profile-label {
+            color: #8b5cb0;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .profile-value {
+            font-family: 'Orbitron', sans-serif;
+            color: #d9b3ff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #9000d0;
+        }
+
+        .profile-highlight {
+            border-color: #b000ff;
+            background: rgba(30, 0, 60, 0.8);
+        }
+
+        .profile-highlight .profile-value {
+            color: #ffb3ff;
+            text-shadow: 0 0 12px #d000ff;
+        }
+
+        /* Особенность */
+        .feature-note {
+            margin-top: 25px;
+            padding: 18px 22px;
+            background: rgba(15, 0, 25, 0.7);
+            border-left: 3px solid #d000ff;
+            color: #c9a0f0;
+            font-style: italic;
+            letter-spacing: 0.5px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .feature-note strong {
+            color: #e0b0ff;
+            text-shadow: 0 0 8px #b000ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Практика</h1>
+            <p class="section-intro">После каждого курса — обязательная практика. От наблюдения до полноценной работы.</p>
+        </header>
+
+        <!-- Практика по курсам -->
+        <div class="practice-grid">
+            <div class="practice-card card-1">
+                <div class="practice-header">
+                    <span class="practice-year">1</span>
+                    <span class="practice-title">КУРС</span>
+                </div>
+                <p class="practice-desc">Знакомство с лабораториями. Работа с архивами. Изучение оборудования.</p>
+            </div>
+
+            <div class="practice-card card-2">
+                <div class="practice-header">
+                    <span class="practice-year">2</span>
+                    <span class="practice-title">КУРС</span>
+                </div>
+                <p class="practice-desc">Первые выезды на реальные места преступлений. Пока только наблюдатели.</p>
+            </div>
+
+            <div class="practice-card card-3">
+                <div class="practice-header">
+                    <span class="practice-year">3</span>
+                    <span class="practice-title">КУРС</span>
+                </div>
+                <p class="practice-desc">Помощники следователей. Уже могут оформлять документы.</p>
+            </div>
+
+            <div class="practice-card card-4">
+                <div class="practice-header">
+                    <span class="practice-year">4</span>
+                    <span class="practice-title">КУРС</span>
+                </div>
+                <p class="practice-desc">Полноценная работа в составе группы. Получают временный доступ к закрытым базам полиции.</p>
+            </div>
+
+            <div class="practice-card card-5">
+                <div class="practice-header">
+                    <span class="practice-year">5</span>
+                    <span class="practice-title">КУРС</span>
+                </div>
+                <p class="practice-desc">Преддипломная практика. Студент почти становится сотрудником полиции.</p>
+            </div>
+        </div>
+        <div class="feature-note">
+            <strong>Особенность университета:</strong> Каждый студент получает персональный электронный профиль. В нём отображаются средний балл, академический рейтинг, посещаемость, дисциплинарные нарушения, уровень допуска, открытые лаборатории, достижения, рекомендации преподавателей и результаты практики.
+        </div>
+    </div>
+</body>
+</html>

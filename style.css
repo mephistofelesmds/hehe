@@ -1,0 +1,176 @@
+/* Базовые настройки и шрифты */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a0010;
+    background-image: 
+        radial-gradient(circle at 50% 50%, #1a0030 0%, #05000a 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(100, 0, 200, 0.03) 2px, rgba(100, 0, 200, 0.03) 4px);
+    font-family: 'Exo 2', sans-serif;
+    color: #e0c0ff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Эффект линии сканирования */
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.2) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 999;
+    animation: scan 8s linear infinite;
+}
+
+@keyframes scan {
+    from { background-position: 0 0; }
+    to { background-position: 0 100%; }
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    border: 2px solid #7a00ff;
+    border-radius: 8px;
+    background: rgba(10, 0, 20, 0.8);
+    backdrop-filter: blur(5px);
+    box-shadow: 
+        0 0 30px rgba(120, 0, 255, 0.4),
+        inset 0 0 30px rgba(120, 0, 255, 0.1),
+        0 0 100px rgba(180, 0, 255, 0.2);
+    padding: 40px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Глитч-эффект для заголовка */
+.logo-glitch {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #d4a0ff;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+}
+
+@keyframes text-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 10px #9d00ff,
+            0 0 20px #9d00ff,
+            0 0 40px #4a0080,
+            0 0 80px #2a0040;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+.subtitle {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+    color: #b57edc;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.header-line {
+    width: 70%;
+    height: 2px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #b300ff, #f200ff, #b300ff, transparent);
+    box-shadow: 0 0 15px #c000ff;
+}
+
+/* Навигация */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.main-nav li {
+    border-left: 3px solid #5c00b0;
+    padding-left: 20px;
+    transition: all 0.3s ease;
+}
+
+.main-nav li:hover {
+    border-left-color: #e000ff;
+    background: rgba(120, 0, 255, 0.15);
+    box-shadow: -5px 0 15px rgba(180, 0, 255, 0.3);
+    transform: translateX(10px);
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #c9a0f0;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.2s;
+    text-shadow: 0 0 5px #8000c0;
+}
+
+.nav-icon {
+    font-family: monospace;
+    color: #c000ff;
+    font-size: 1.2rem;
+    width: 30px;
+    display: inline-block;
+    text-shadow: 0 0 10px #d000ff;
+    animation: icon-pulse 2s infinite;
+}
+
+@keyframes icon-pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; text-shadow: 0 0 20px #ff00ea; }
+}
+
+.footer-tag {
+    font-family: monospace;
+    color: #a64dff;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .logo-glitch {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    .main-nav a {
+        font-size: 1.1rem;
+    }
+    .container {
+        padding: 25px 15px;
+    }
+}

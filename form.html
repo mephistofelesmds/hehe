@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .form-note {
+            color: #b57edc;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Карточка базовой формы */
+        .dress-code-card {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-left: 4px solid #b000ff;
+            border-radius: 6px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(80, 0, 180, 0.2);
+            transition: 0.3s;
+        }
+
+        .dress-code-card:hover {
+            border-left-color: #ff00ea;
+            
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #e0b0ff;
+            text-shadow: 0 0 15px #a000e0;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .section-subtitle {
+            color: #9a6dc9;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .item-card {
+            background: rgba(40, 0, 80, 0.5);
+            border: 1px solid #5c00b0;
+            padding: 15px 18px;
+            border-radius: 6px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #b000ff, transparent);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .item-card:hover {
+            border-color: #d000ff;
+            
+            transform: translateY(-3px);
+        }
+
+        .item-card:hover::before {
+            opacity: 1;
+        }
+
+        .item-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: block;
+            text-shadow: 0 0 15px #d000ff;
+        }
+
+        .item-name {
+            color: #d9b3ff;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+
+        .item-desc {
+            color: #8b5cb0;
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+
+        /* Карточка ID */
+        .id-card {
+            background: rgba(10, 0, 20, 0.9);
+            border: 2px solid #7a00ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            box-shadow: 0 0 30px rgba(120, 0, 255, 0.3), inset 0 0 20px rgba(100, 0, 200, 0.05);
+            transition: 0.3s;
+        }
+
+        .id-card:hover {
+            border-color: #e000ff;
+            
+        }
+
+        .id-icon {
+            font-size: 4rem;
+            text-shadow: 0 0 30px #d000ff, 0 0 60px #8000c0;
+            animation: id-glow 2s infinite;
+        }
+
+        @keyframes id-glow {
+            0%, 100% { text-shadow: 0 0 30px #d000ff, 0 0 60px #8000c0; }
+            50% { text-shadow: 0 0 50px #ff00f2, 0 0 90px #b000ff; }
+        }
+
+        .id-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #e0b0ff;
+            letter-spacing: 2px;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .id-info p {
+            color: #b57edc;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .id-badge {
+            display: inline-block;
+            background: rgba(180, 0, 255, 0.2);
+            border: 1px solid #b000ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: #d9b3ff;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* Специальная экипировка */
+        .special-section {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .special-card {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .special-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #d000ff;
+        }
+
+        .special-name {
+            font-family: 'Orbitron', sans-serif;
+            color: #e0b0ff;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px #a000e0;
+            margin-bottom: 5px;
+        }
+
+        .special-desc {
+            color: #9a6dc9;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Форма</h1>
+        </header>
+
+        <!-- Базовая форма -->
+        <div class="dress-code-card">
+            <h2 class="section-title">Базовая форма одежды</h2>
+            <p class="section-subtitle">Обязательные элементы повседневной формы</p>
+
+            <div class="items-grid">
+                <div class="item-card">
+                    <div class="item-name">Тёмные брюки</div>
+                    <div class="item-desc">Классический крой</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-name">Тёмная юбка</div>
+                    <div class="item-desc">Ниже колена</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-name">Чёрная рубашка</div>
+                    <div class="item-desc">Строгий ворот</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-name">Пиджак</div>
+                    <div class="item-desc">Тёмный, приталенный</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-name">Университетский значок</div>
+                    <div class="item-desc">На лацкане пиджака</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-name">ID-карта</div>
+                    <div class="item-desc">Всегда на груди</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ID-карта -->
+        <div class="id-card">
+            <div class="id-info">
+                <h3>ID-карта студента</h3>
+                <p>Обязательна к ношению на груди в зоне видимости. Содержит чип доступа, фотографию, факультет и уровень допуска. При утере — немедленно сообщить в деканат.</p>
+            </div>
+        </div>
+
+        <!-- Специальная экипировка -->
+        <h2 class="section-title" style="margin-top: 35px;">Специальная экипировка</h2>
+        <p class="section-subtitle">Для занятий в лабораториях и на полигоне</p>
+
+        <div class="special-section">
+            <div class="special-card">
+                <div class="special-name">Лабораторный халат</div>
+                <div class="special-desc">Обязателен во всех лабораториях и морге. Выдаётся академией.</div>
+            </div>
+            <div class="special-card">
+                <div class="special-name">Защитная экипировка</div>
+                <div class="special-desc">Обязательна на стрельбище и полигоне. Включает очки, наушники и бронежилет.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Академический рейтинг — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-intro {
+            color: #b57edc;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .info-block {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(80, 0, 180, 0.2);
+            transition: 0.3s;
+        }
+
+        .info-block:hover {
+            border-color: #9d00ff;
+            box-shadow: 0 0 30px rgba(140, 0, 255, 0.3);
+        }
+
+        .block-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: #e0b0ff;
+            text-shadow: 0 0 12px #a000e0;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #5c00b0;
+        }
+
+        /* Герой RP */
+        .rp-hero {
+            text-align: center;
+            margin: 10px 0 30px;
+        }
+
+        .rp-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #ffb3ff;
+            text-shadow: 0 0 30px #d000ff, 0 0 60px #a000e0, 0 0 100px #6000a0;
+            letter-spacing: 4px;
+            display: block;
+            animation: rp-pulse 3s infinite;
+        }
+
+        @keyframes rp-pulse {
+            0%, 100% { text-shadow: 0 0 30px #d000ff, 0 0 60px #a000e0; }
+            50% { text-shadow: 0 0 50px #ff00f2, 0 0 90px #c000ff; }
+        }
+
+        .rp-label {
+            color: #9a6dc9;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .rp-note {
+            color: #b57edc;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* Две колонки: начисление и снятие */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .gain-column, .lose-column {
+            background: rgba(20, 0, 35, 0.7);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .gain-column {
+            border-top: 3px solid #00c060;
+        }
+
+        .lose-column {
+            border-top: 3px solid #d00040;
+        }
+
+        .column-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .gain-title {
+            color: #60ffa0;
+            text-shadow: 0 0 10px #00c060;
+        }
+
+        .lose-title {
+            color: #ff6080;
+            text-shadow: 0 0 10px #d00040;
+        }
+
+        .rp-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .rp-list li {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+
+        .gain-list li {
+            color: #b0ffd0;
+            border-left: 2px solid #00c060;
+        }
+
+        .gain-list li:hover {
+            background: rgba(0, 180, 80, 0.1);
+            border-left-color: #60ffa0;
+        }
+
+        .lose-list li {
+            color: #ffb0c0;
+            border-left: 2px solid #d00040;
+        }
+
+        .lose-list li:hover {
+            background: rgba(200, 0, 50, 0.1);
+            border-left-color: #ff6080;
+        }
+
+        /* Уровни рейтинга */
+        .levels-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .levels-table th {
+            background: rgba(80, 0, 150, 0.6);
+            color: #e0b0ff;
+            padding: 12px 15px;
+            text-align: left;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px #a000d0;
+            border-bottom: 2px solid #b000ff;
+        }
+
+        .levels-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #4a0080;
+            color: #d9b3ff;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .levels-table tbody tr {
+            transition: 0.2s;
+        }
+
+        .levels-table tbody tr:hover {
+            background: rgba(100, 0, 200, 0.2);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .badge-elite {
+            background: rgba(255, 200, 0, 0.15);
+            border: 1px solid #d0a000;
+            color: #ffe080;
+            text-shadow: 0 0 8px #d0a000;
+        }
+
+        .badge-excellent {
+            background: rgba(200, 0, 255, 0.15);
+            border: 1px solid #b000d0;
+            color: #e080ff;
+            text-shadow: 0 0 8px #b000d0;
+        }
+
+        .badge-good {
+            background: rgba(0, 150, 255, 0.15);
+            border: 1px solid #0070c0;
+            color: #80d0ff;
+            text-shadow: 0 0 8px #0070c0;
+        }
+
+        .badge-normal {
+            background: rgba(150, 150, 150, 0.1);
+            border: 1px solid #707070;
+            color: #c0c0c0;
+        }
+
+        .badge-watch {
+            background: rgba(255, 150, 0, 0.15);
+            border: 1px solid #c08000;
+            color: #ffc080;
+            text-shadow: 0 0 8px #c08000;
+        }
+
+        .badge-risk {
+            background: rgba(220, 0, 50, 0.2);
+            border: 1px solid #c00030;
+            color: #ff6080;
+            text-shadow: 0 0 8px #c00030;
+        }
+
+        .rp-range {
+            font-family: 'Orbitron', sans-serif;
+            color: #c9a0f0;
+            font-size: 0.9rem;
+        }
+
+        /* Поощрения */
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .reward-item {
+            background: rgba(25, 0, 50, 0.7);
+            border: 1px solid #5c00b0;
+            padding: 14px 16px;
+            border-radius: 6px;
+            color: #d9b3ff;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .reward-item:hover {
+            border-color: #d000ff;
+            box-shadow: 0 0 18px rgba(160, 0, 255, 0.3);
+            color: #ffffff;
+            text-shadow: 0 0 6px #ff00ea;
+        }
+
+        /* Пересдачи */
+        .retake-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .retake-item {
+            background: rgba(20, 0, 35, 0.7);
+            border-left: 3px solid #5c00b0;
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            color: #d9b3ff;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+
+        .retake-item:hover {
+            border-left-color: #c000ff;
+            background: rgba(30, 0, 55, 0.7);
+            box-shadow: 0 0 15px rgba(140, 0, 255, 0.2);
+        }
+
+        .retake-warning {
+            border-left-color: #c00030;
+            color: #ffb0c0;
+            background: rgba(25, 0, 10, 0.6);
+        }
+
+        .retake-warning:hover {
+            border-left-color: #ff4060;
+            background: rgba(35, 0, 15, 0.6);
+            box-shadow: 0 0 20px rgba(200, 0, 50, 0.3);
+        }
+
+        /* Особенность */
+        .feature-note {
+            margin-top: 10px;
+            padding: 18px 22px;
+            background: rgba(10, 0, 20, 0.8);
+            border: 2px solid #7a00ff;
+            border-radius: 8px;
+            color: #c9a0f0;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            box-shadow: 0 0 25px rgba(100, 0, 200, 0.2);
+        }
+
+        .feature-note strong {
+            color: #e0b0ff;
+            text-shadow: 0 0 8px #b000ff;
+        }
+
+        @media (max-width: 600px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            .rp-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Академический рейтинг</h1>
+            <p class="section-intro">Кроме оценок существует общий рейтинг студента. Он обновляется каждую неделю.</p>
+        </header>
+
+        <!-- RP герой -->
+        <div class="rp-hero">
+            <span class="rp-number">1000</span>
+            <span class="rp-label">Rating Points</span>
+            <p class="rp-note">Каждый начинает обучение с 1000 RP. Дальше рейтинг постоянно меняется.</p>
+        </div>
+
+        <!-- Начисление и снятие -->
+        <div class="two-columns">
+            <div class="gain-column">
+                <h3 class="column-title gain-title">За что начисляют RP</h3>
+                <ul class="rp-list gain-list">
+                    <li>Отличные оценки</li>
+                    <li>Победы в олимпиадах</li>
+                    <li>Научные исследования</li>
+                    <li>Помощь преподавателям</li>
+                    <li>Участие в расследованиях</li>
+                    <li>Хорошая дисциплина</li>
+                    <li>Добровольные дежурства</li>
+                </ul>
+            </div>
+            <div class="lose-column">
+                <h3 class="column-title lose-title">За что снимают RP</h3>
+                <ul class="rp-list lose-list">
+                    <li>Прогулы</li>
+                    <li>Опоздания</li>
+                    <li>Списывание</li>
+                    <li>Нарушение техники безопасности</li>
+                    <li>Драки</li>
+                    <li>Порча имущества</li>
+                    <li>Неуважение к преподавателям</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Уровни рейтинга -->
+        <div class="info-block">
+            <h2 class="block-title">Уровни рейтинга</h2>
+            <table class="levels-table">
+                <thead>
+                    <tr>
+                        <th>RP</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="rp-range">1800+</td>
+                        <td><span class="status-badge badge-elite">Элитный студент</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rp-range">1500–1799</td>
+                        <td><span class="status-badge badge-excellent">Отличник</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rp-range">1200–1499</td>
+                        <td><span class="status-badge badge-good">Хорошая успеваемость</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rp-range">900–1199</td>
+                        <td><span class="status-badge badge-normal">Обычный студент</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rp-range">700–899</td>
+                        <td><span class="status-badge badge-watch">Под наблюдением</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rp-range">менее 700</td>
+                        <td><span class="status-badge badge-risk">Академический риск</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Поощрения -->
+        <div class="info-block">
+            <h2 class="block-title">Поощрения</h2>
+            <p style="color: #b57edc; margin-bottom: 15px; letter-spacing: 0.5px;">Высокий рейтинг открывает доступ к:</p>
+            <div class="rewards-grid">
+                <div class="reward-item">Повышенная стипендия</div>
+                <div class="reward-item">Лучшее общежитие</div>
+                <div class="reward-item">Закрытые лаборатории</div>
+                <div class="reward-item">Дополнительные исследования</div>
+                <div class="reward-item">Стажировки</div>
+                <div class="reward-item">Рекомендации в полицию</div>
+            </div>
+        </div>
+
+        <!-- Пересдачи -->
+        <div class="info-block">
+            <h2 class="block-title">Пересдачи</h2>
+            <ul class="retake-list">
+                <li class="retake-item">Первая пересдача — бесплатная.</li>
+                <li class="retake-item">Вторая — только по решению деканата.</li>
+                <li class="retake-item retake-warning">Третьей пересдачи нет. После трёх незакрытых дисциплин студент отчисляется.</li>
+            </ul>
+        </div>
+
+        <!-- Особенность -->
+        <div class="feature-note">
+            <strong>Особенность академии:</strong> У каждого студента есть электронный академический профиль, доступный через университетскую ID-карту. В нём отображаются: текущие баллы по всем дисциплинам, рейтинг RP, место среди студентов своего курса, посещаемость, дисциплинарные взыскания, достижения и допуски.<br><br>
+            При этом видеть чужие баллы нельзя, но место в рейтинге курса открыто для всех. Поэтому студенты знают, кто сейчас занимает первое место, кто вылетает из топа и кто находится на грани отчисления.
+        </div>
+    </div>
+</body>
+</html>

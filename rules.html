@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-intro {
+            color: #b57edc;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        /* Правила */
+        .rules-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .rule-item {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-left: 3px solid #b000ff;
+            padding: 16px 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .rule-item:hover {
+            border-left-color: #ff00ea;
+            border-color: #9d00ff;
+            transform: translateX(5px);
+            background: rgba(25, 0, 50, 0.8);
+        }
+
+        .rule-number {
+            font-family: 'Orbitron', sans-serif;
+            color: #d000ff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            min-width: 30px;
+            letter-spacing: 1px;
+        }
+
+        .rule-text {
+            color: #d9b3ff;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+        }
+
+        .rule-warning {
+            display: inline-block;
+            background: rgba(200, 0, 80, 0.2);
+            border: 1px solid #b00050;
+            color: #ff8099;
+            padding: 2px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-left: 10px;
+        }
+
+        /* Система жетонов */
+        .token-section {
+            margin-top: 35px;
+            border: 2px solid #7a00ff;
+            border-radius: 8px;
+            padding: 30px;
+            background: rgba(10, 0, 20, 0.7);
+        }
+
+        .token-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #e0b0ff;
+            text-shadow: 0 0 15px #b000ff;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .token-subtitle {
+            color: #9a6dc9;
+            text-align: center;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .token-visual {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .token-card {
+            background: rgba(20, 0, 40, 0.9);
+            border: 2px solid #b000ff;
+            border-radius: 10px;
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(150, 0, 255, 0.4), inset 0 0 20px rgba(100, 0, 200, 0.1);
+            animation: token-glow 3s infinite;
+        }
+
+        @keyframes token-glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(150, 0, 255, 0.4), inset 0 0 20px rgba(100, 0, 200, 0.1); }
+            50% { box-shadow: 0 0 70px rgba(200, 0, 255, 0.7), inset 0 0 35px rgba(160, 0, 255, 0.2); }
+        }
+
+        .token-icon {
+            font-size: 3.5rem;
+            display: block;
+            animation: id-glow 2s infinite;
+        }
+
+        @keyframes id-glow {
+            0%, 100% { text-shadow: 0 0 30px #d000ff, 0 0 60px #8000c0; }
+            50% { text-shadow: 0 0 50px #ff00f2, 0 0 90px #b000ff; }
+        }
+
+        .token-name {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        .token-chip {
+            color: #b57edc;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Уровни доступа */
+        .access-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .access-card {
+            background: rgba(20, 0, 35, 0.8);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 18px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .access-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #b000ff, transparent);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .access-card:hover {
+            border-color: #d000ff;
+            transform: translateY(-3px);
+        }
+
+        .access-card:hover::after {
+            opacity: 1;
+        }
+
+        .access-level-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .badge-restricted {
+            background: rgba(200, 0, 50, 0.2);
+            border: 1px solid #b00030;
+            color: #ff5070;
+        }
+
+        .badge-standard {
+            background: rgba(0, 150, 200, 0.2);
+            border: 1px solid #0070a0;
+            color: #50c0ff;
+        }
+
+        .badge-advanced {
+            background: rgba(150, 0, 255, 0.2);
+            border: 1px solid #8000d0;
+            color: #c080ff;
+        }
+
+        .badge-maximum {
+            background: rgba(255, 200, 0, 0.15);
+            border: 1px solid #d0a000;
+            color: #ffe080;
+        }
+
+        .access-name {
+            font-weight: 600;
+            color: #e0b0ff;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .access-desc {
+            color: #8b5cb0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Цитата */
+        .flavor-quote {
+            margin-top: 30px;
+            padding: 18px 22px;
+            background: rgba(15, 0, 25, 0.7);
+            border-left: 3px solid #d000ff;
+            color: #c9a0f0;
+            font-style: italic;
+            letter-spacing: 0.5px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .flavor-quote strong {
+            color: #e0b0ff;
+            text-shadow: 0 0 8px #b000ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Правила</h1>
+            <p class="section-intro">Обязательны к соблюдению всеми студентами. Нарушения рассматриваются дисциплинарным комитетом.</p>
+        </header>
+
+        <!-- Основные правила -->
+        <ul class="rules-list">
+            <li class="rule-item">
+                <span class="rule-number">01</span>
+                <span class="rule-text">Обязательное посещение практических занятий. Пропуск без уважительной причины фиксируется в электронном досье.</span>
+            </li>
+            <li class="rule-item">
+                <span class="rule-number">02</span>
+                <span class="rule-text">Запрещено использовать нелицензированные импланты во время экзаменов. <span class="rule-warning">ГРУБОЕ НАРУШЕНИЕ</span></span>
+            </li>
+            <li class="rule-item">
+                <span class="rule-number">03</span>
+                <span class="rule-text">Запрещён взлом университетской сети. Любая попытка несанкционированного доступа отслеживается службой кибербезопасности.</span>
+            </li>
+            <li class="rule-item">
+                <span class="rule-number">04</span>
+                <span class="rule-text">Запрещена продажа учебных материалов и данных расследований третьим лицам.</span>
+            </li>
+            <li class="rule-item">
+                <span class="rule-number">05</span>
+                <span class="rule-text">Все лабораторные записи автоматически сохраняются в архив академии. Удаление или изменение записей невозможно.</span>
+            </li>
+            <li class="rule-item">
+                <span class="rule-number">06</span>
+                <span class="rule-text">Каждое учебное дело считается конфиденциальным. Разглашение материалов карается вплоть до отчисления.</span>
+            </li>
+            <li class="rule-item">
+                <span class="rule-number">07</span>
+                <span class="rule-text">Студент обязан носить ID-карту на территории кампуса. Отсутствие карты — ограничение доступа ко всем помещениям.</span>
+            </li>
+            <li class="rule-item">
+                <span class="rule-number">08</span>
+                <span class="rule-text">Драки автоматически рассматриваются дисциплинарным комитетом. Решение может быть вынесено в течение суток.</span>
+            </li>
+            <li class="rule-item">
+                <span class="rule-number">09</span>
+                <span class="rule-text">Списывание с помощью ИИ, нейрочипов или скрытых имплантов считается грубым нарушением. <span class="rule-warning">ГРУБОЕ НАРУШЕНИЕ</span></span>
+            </li>
+        </ul>
+
+        <!-- Система жетонов -->
+        <section class="token-section">
+            <h2 class="token-title">Электронный жетон допуска</h2>
+            <p class="token-subtitle">Все студенты получают жетон. Он открывает двери в зависимости от курса и успеваемости.</p>
+
+            <div class="access-levels">
+                <div class="access-card">
+                    <span class="access-level-badge badge-restricted">УРОВЕНЬ 1</span>
+                    <div class="access-name">Первокурсник</div>
+                    <div class="access-desc">Доступ в общие зоны, библиотеку и учебные аудитории. Лаборатории особо опасных биоматериалов закрыты.</div>
+                </div>
+                <div class="access-card">
+                    <span class="access-level-badge badge-standard">УРОВЕНЬ 2</span>
+                    <div class="access-name">Второй–третий курс</div>
+                    <div class="access-desc">Расширенный доступ к профильным лабораториям, тиру и центру симуляций.</div>
+                </div>
+                <div class="access-card">
+                    <span class="access-level-badge badge-advanced">УРОВЕНЬ 3</span>
+                    <div class="access-name">Отличник четвёртого курса</div>
+                    <div class="access-desc">Может заходить почти везде, включая закрытые архивы и продвинутые полигоны.</div>
+                </div>
+                <div class="access-card">
+                    <span class="access-level-badge badge-maximum">УРОВЕНЬ Ω</span>
+                    <div class="access-name">Преподаватель</div>
+                    <div class="access-desc">Максимальный уровень доступа. Все помещения, все архивы, все системы.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

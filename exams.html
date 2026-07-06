@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экзамены — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-intro {
+            color: #b57edc;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Карточка экзамена */
+        .exam-card {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-left: 4px solid #8000c0;
+            border-radius: 6px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(80, 0, 180, 0.2);
+        }
+
+        .exam-card:hover {
+            border-left-color: #e000ff;
+            border-color: #9d00ff;
+            box-shadow: 0 0 30px rgba(140, 0, 255, 0.35);
+            transform: translateX(4px);
+        }
+
+        .exam-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .exam-icon {
+            font-family: monospace;
+            font-size: 1.6rem;
+            color: #c000ff;
+            text-shadow: 0 0 12px #d000ff;
+            width: 40px;
+            text-align: center;
+        }
+
+        .exam-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: #e0b0ff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px #a000d0;
+        }
+
+        .exam-tagline {
+            color: #9a6dc9;
+            font-size: 0.9rem;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .exam-desc {
+            color: #c9a0f0;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .exam-details {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .exam-details li {
+            background: rgba(60, 0, 100, 0.4);
+            border: 1px solid #5c00b0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #d9b3ff;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+
+        .exam-details li:hover {
+            background: rgba(120, 0, 200, 0.4);
+            border-color: #c000ff;
+            color: #ffffff;
+            text-shadow: 0 0 6px #ff00ea;
+        }
+
+        .exam-example {
+            background: rgba(10, 0, 20, 0.6);
+            border-left: 2px solid #b000ff;
+            padding: 12px 16px;
+            margin-top: 12px;
+            color: #b57edc;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            font-style: italic;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .exam-example strong {
+            color: #d9b3ff;
+        }
+
+        /* Особые карточки */
+        .card-vr {
+            border-left-color: #00a0c0;
+        }
+        .card-vr:hover {
+            border-left-color: #00e0ff;
+            box-shadow: 0 0 30px rgba(0, 180, 220, 0.35);
+        }
+        .card-vr .exam-icon {
+            color: #00c0e0;
+            text-shadow: 0 0 15px #00d0ff;
+        }
+        .card-vr .exam-name {
+            color: #80e0ff;
+            text-shadow: 0 0 12px #00a0d0;
+        }
+
+        .card-team {
+            border-left-color: #c08000;
+        }
+        .card-team:hover {
+            border-left-color: #e0b000;
+            box-shadow: 0 0 30px rgba(200, 150, 0, 0.35);
+        }
+        .card-team .exam-icon {
+            color: #d0a000;
+            text-shadow: 0 0 15px #e0b000;
+        }
+        .card-team .exam-name {
+            color: #ffe080;
+            text-shadow: 0 0 12px #c09000;
+        }
+
+        .card-final {
+            border: 2px solid #b000ff;
+            background: rgba(20, 0, 40, 0.9);
+            box-shadow: 0 0 40px rgba(160, 0, 255, 0.3);
+        }
+        .card-final:hover {
+            border-color: #ff00ea;
+            box-shadow: 0 0 60px rgba(200, 0, 255, 0.5);
+        }
+        .card-final .exam-icon {
+            color: #ff40f0;
+            text-shadow: 0 0 20px #ff00ea;
+        }
+        .card-final .exam-name {
+            color: #ffffff;
+            text-shadow: 0 0 20px #ff00f2;
+            font-size: 1.5rem;
+        }
+
+        /* Итоговые экзамены по курсам */
+        .year-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .year-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(20, 0, 35, 0.7);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 14px 18px;
+            transition: 0.3s;
+        }
+
+        .year-item:hover {
+            border-color: #b000ff;
+            box-shadow: 0 0 18px rgba(140, 0, 255, 0.25);
+        }
+
+        .year-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #ffb3ff;
+            text-shadow: 0 0 15px #d000ff;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .year-case {
+            color: #d9b3ff;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        /* Факультетские экзамены */
+        .faculty-subcard {
+            background: rgba(20, 0, 35, 0.7);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 18px;
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+
+        .faculty-subcard:hover {
+            border-color: #9d00ff;
+            box-shadow: 0 0 18px rgba(130, 0, 255, 0.25);
+        }
+
+        .faculty-subname {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #e0b0ff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #a000d0;
+            margin-bottom: 8px;
+        }
+
+        .faculty-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .faculty-list li {
+            background: rgba(50, 0, 90, 0.5);
+            border: 1px solid #5c00b0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #d9b3ff;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+
+        .faculty-list li:hover {
+            background: rgba(100, 0, 180, 0.5);
+            border-color: #c000ff;
+            color: #ffffff;
+        }
+
+        /* 72 часа */
+        .countdown-note {
+            display: inline-block;
+            background: rgba(200, 0, 50, 0.2);
+            border: 1px solid #c00030;
+            color: #ff8099;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #d00040;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .exam-name {
+                font-size: 1.1rem;
+            }
+            .card-final .exam-name {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Экзамены</h1>
+        </header>
+
+        <!-- Теоретический -->
+        <div class="exam-card">
+            <div class="exam-header">
+                <span class="exam-icon">[T]</span>
+                <span class="exam-name">Теоретический экзамен</span>
+            </div>
+            <p class="exam-tagline">Самый обычный. Проходит через университетскую сеть.</p>
+            <p class="exam-desc">Вопросы генерирует ИИ, поэтому у каждого студента свой вариант.</p>
+            <ul class="exam-details">
+                <li>Тест</li>
+                <li>Задачи</li>
+                <li>Анализ ситуации</li>
+                <li>Эссе</li>
+            </ul>
+            <div class="exam-example">
+                <strong>Пример:</strong> На месте преступления найден кибернетический глаз с удалённой памятью. Какие действия будут законными?
+            </div>
+        </div>
+
+        <!-- Практический -->
+        <div class="exam-card">
+            <div class="exam-header">
+                <span class="exam-icon">[P]</span>
+                <span class="exam-name">Практический экзамен</span>
+            </div>
+            <p class="exam-tagline">Самый распространённый. Студент приходит в лабораторию.</p>
+            <p class="exam-desc">Ему дают смоделированное преступление.</p>
+            <ul class="exam-details">
+                <li>Квартира</li>
+                <li>Кровь</li>
+                <li>Оружие</li>
+                <li>Следы обуви</li>
+                <li>Записи дронов</li>
+                <li>Свидетели (ИИ)</li>
+                <li>Ложные улики</li>
+            </ul>
+            <p class="exam-desc" style="margin-top: 10px;">Нужно: правильно осмотреть место, ничего не испортить, собрать улики, оформить документы, сделать вывод.</p>
+        </div>
+
+        <!-- VR-экзамен -->
+        <div class="exam-card card-vr">
+            <div class="exam-header">
+                <span class="exam-icon">[VR]</span>
+                <span class="exam-name">VR-экзамен</span>
+            </div>
+            <p class="exam-tagline">Фишка университета. Студента подключают к капсуле виртуальной реальности.</p>
+            <p class="exam-desc">Он оказывается внутри полноценного расследования. Причём события происходят в реальном времени. ИИ постоянно меняет ситуацию. Два одинаковых экзамена практически невозможны.</p>
+            <div class="exam-example">
+                <strong>Пример:</strong> Произошёл взрыв. Пока студент ищет улики — свидетели уходят, начинается дождь, стираются камеры, появляются новые подозреваемые.
+            </div>
+        </div>
+
+        <!-- Командный -->
+        <div class="exam-card card-team">
+            <div class="exam-header">
+                <span class="exam-icon">[G]</span>
+                <span class="exam-name">Командный экзамен</span>
+            </div>
+            <p class="exam-tagline">Проводится один-два раза в год. Группу из 5–6 студентов отправляют расследовать дело.</p>
+            <p class="exam-desc">Каждый отвечает за свою специальность. Оценивается не только результат, но и умение работать вместе.</p>
+            <ul class="exam-details">
+                <li>Криминалист</li>
+                <li>Следователь</li>
+                <li>Медик</li>
+                <li>Аналитик</li>
+                <li>Киберспециалист</li>
+                <li>Оперативник</li>
+            </ul>
+        </div>
+
+        <!-- Устная защита -->
+        <div class="exam-card">
+            <div class="exam-header">
+                <span class="exam-icon">[D]</span>
+                <span class="exam-name">Устная защита</span>
+            </div>
+            <p class="exam-tagline">После практики.</p>
+            <p class="exam-desc">Студент должен объяснить комиссии:</p>
+            <ul class="exam-details">
+                <li>Почему сделал именно так</li>
+                <li>Почему отверг другие версии</li>
+                <li>Какие ошибки допустил</li>
+                <li>Как можно было улучшить расследование</li>
+            </ul>
+        </div>
+
+        <!-- Итоговые экзамены по курсам -->
+        <div class="exam-card">
+            <div class="exam-header">
+                <span class="exam-icon">[Y]</span>
+                <span class="exam-name">Итоговый экзамен каждого курса</span>
+            </div>
+            <p class="exam-tagline">В конце года проводится большое расследование. Это почти мини-сюжет.</p>
+            <div class="year-grid">
+                <div class="year-item">
+                    <span class="year-num">1</span>
+                    <span class="year-case">Кража</span>
+                </div>
+                <div class="year-item">
+                    <span class="year-num">2</span>
+                    <span class="year-case">Убийство</span>
+                </div>
+                <div class="year-item">
+                    <span class="year-num">3</span>
+                    <span class="year-case">Деятельность банды</span>
+                </div>
+                <div class="year-item">
+                    <span class="year-num">4</span>
+                    <span class="year-case">Террористический акт</span>
+                </div>
+                <div class="year-item">
+                    <span class="year-num">5</span>
+                    <span class="year-case">Масштабный корпоративный заговор</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Выпускной экзамен -->
+        <div class="exam-card card-final">
+            <div class="exam-header">
+                <span class="exam-icon">[F]</span>
+                <span class="exam-name">Выпускной экзамен (5 курс)</span>
+            </div>
+            <p class="exam-tagline">Самый сложный. Называется «Комплексная аттестация».</p>
+            <p class="exam-desc">Студент получает дело, о котором ничего не знает. В течение 72 часов он должен:</p>
+            <ul class="exam-details">
+                <li>Осмотреть место</li>
+                <li>Провести вскрытие</li>
+                <li>Допросить свидетелей</li>
+                <li>Взломать защищённый сервер</li>
+                <li>Найти преступника</li>
+                <li>Подготовить обвинение</li>
+                <li>Защитить расследование перед комиссией</li>
+            </ul>
+            <span class="countdown-note">72 ЧАСА</span>
+            <p class="exam-desc" style="margin-top: 12px;">Причём преподаватели могут специально мешать: неожиданно появляется новая улика, свидетель меняет показания, доказательство оказывается подделано, один из подозреваемых погибает, выясняется что полиция допустила ошибку.</p>
+            <p class="exam-desc"><strong>Экзамен проверяет не память, а способность адаптироваться.</strong></p>
+        </div>
+
+        <!-- Необычные экзамены по факультетам -->
+        <div class="exam-card">
+            <div class="exam-header">
+                <span class="exam-icon">[S]</span>
+                <span class="exam-name">Необычные экзамены по факультетам</span>
+            </div>
+
+            <div class="faculty-subcard">
+                <div class="faculty-subname">Криминалистика</div>
+                <ul class="faculty-list">
+                    <li>Восстановить картину преступления по уликам</li>
+                    <li>Определить настоящие и подброшенные доказательства</li>
+                    <li>Найти ошибки в работе другого криминалиста</li>
+                </ul>
+            </div>
+
+            <div class="faculty-subcard">
+                <div class="faculty-subname">Следственное дело</div>
+                <ul class="faculty-list">
+                    <li>Провести допрос подозреваемого</li>
+                    <li>Составить обвинительное заключение</li>
+                    <li>Доказать вину или невиновность</li>
+                </ul>
+            </div>
+
+            <div class="faculty-subcard">
+                <div class="faculty-subname">Киберпреступность</div>
+                <ul class="faculty-list">
+                    <li>Найти хакера в виртуальной сети</li>
+                    <li>Восстановить удалённые файлы</li>
+                    <li>Расшифровать данные</li>
+                    <li>Обнаружить вирус</li>
+                </ul>
+            </div>
+
+            <div class="faculty-subcard">
+                <div class="faculty-subname">Оперативная подготовка</div>
+                <ul class="faculty-list">
+                    <li>Освободить заложников</li>
+                    <li>Захватить преступника</li>
+                    <li>Эвакуировать гражданских</li>
+                    <li>Пройти полосу препятствий</li>
+                </ul>
+            </div>
+
+            <div class="faculty-subcard">
+                <div class="faculty-subname">Судебная медицина</div>
+                <ul class="faculty-list">
+                    <li>Определить причину смерти</li>
+                    <li>Найти яд</li>
+                    <li>Установить личность</li>
+                    <li>Исследовать повреждённый киберимплант</li>
+                </ul>
+            </div>
+
+            <div class="faculty-subcard">
+                <div class="faculty-subname">Психология</div>
+                <ul class="faculty-list">
+                    <li>Выявить ложь</li>
+                    <li>Провести переговоры</li>
+                    <li>Составить психологический профиль преступника</li>
+                </ul>
+            </div>
+
+            <div class="faculty-subcard">
+                <div class="faculty-subname">Аналитика</div>
+                <ul class="faculty-list">
+                    <li>Предсказать следующее преступление</li>
+                    <li>Проанализировать большой массив данных</li>
+                    <li>Найти связь между десятками дел</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

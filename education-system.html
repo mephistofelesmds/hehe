@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система обучения — Академия имени Элиаса Харрингтона</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #b57edc;
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border: 1px solid #5c00b0;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px #8000c0;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #d4a0ff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #7a00ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .info-block {
+            background: rgba(15, 0, 30, 0.8);
+            border: 1px solid #4a0080;
+            border-radius: 6px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .block-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #e0b0ff;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #5c00b0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .block-icon {
+            font-size: 1.8rem;
+            text-shadow: 0 0 15px #d000ff;
+        }
+
+        /* Срок обучения */
+        .duration-badge {
+            display: inline-block;
+            background: rgba(150, 0, 255, 0.2);
+            border: 1px solid #9000d0;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: #e0b0ff;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .duration-sub {
+            color: #b57edc;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Семестры */
+        .semester-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .semester-card {
+            background: rgba(25, 0, 50, 0.7);
+            border: 1px solid #5c00b0;
+            border-radius: 6px;
+            padding: 18px;
+            transition: 0.3s;
+        }
+
+        .semester-name {
+            font-family: 'Orbitron', sans-serif;
+            color: #d4a0ff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .semester-dates {
+            color: #c080ff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .semester-after {
+            color: #9a6dc9;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Неделя */
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .day-cell {
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+
+        .day-work {
+            background: rgba(40, 0, 80, 0.6);
+            border: 1px solid #5c00b0;
+            color: #d9b3ff;
+        }
+
+        .day-work:hover {
+            border-color: #c000ff;
+            color: #ffffff;
+        }
+
+        .day-sat {
+            background: rgba(80, 40, 0, 0.4);
+            border: 1px solid #a08000;
+            color: #ffd080;
+        }
+
+        .day-sat:hover {
+            border-color: #e0b000;
+        }
+
+        .day-off {
+            background: rgba(0, 40, 20, 0.4);
+            border: 1px solid #006040;
+            color: #80d0b0;
+        }
+
+        .day-name {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Форматы занятий */
+        .format-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .format-item {
+            background: rgba(20, 0, 35, 0.7);
+            border-left: 3px solid #8000c0;
+            padding: 15px 18px;
+            border-radius: 0 6px 6px 0;
+            transition: 0.3s;
+        }
+
+        .format-item:hover {
+            border-left-color: #ff00ea;
+            background: rgba(35, 0, 60, 0.7);
+            box-shadow: 0 0 18px rgba(140, 0, 255, 0.2);
+        }
+
+        .format-name {
+            font-weight: 700;
+            color: #e0b0ff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 6px #a000d0;
+            margin-bottom: 4px;
+        }
+
+        .format-desc {
+            color: #b57edc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .format-tag {
+            display: inline-block;
+            background: rgba(120, 0, 200, 0.3);
+            border: 1px solid #8000c0;
+            padding: 2px 10px;
+            border-radius: 15px;
+            color: #d9b3ff;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        /* Симуляция */
+        .sim-block {
+            background: rgba(10, 0, 20, 0.8);
+            border: 2px solid #7a00ff;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 10px;
+            box-shadow: 0 0 30px rgba(100, 0, 200, 0.2);
+        }
+
+        .sim-example {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .sim-element {
+            background: rgba(30, 0, 60, 0.7);
+            border: 1px solid #6a00c0;
+            padding: 14px;
+            border-radius: 6px;
+            text-align: center;
+            color: #d9b3ff;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+
+        .sim-element:hover {
+            border-color: #e000ff; 
+            color: #ffffff;
+            text-shadow: 0 0 8px #ff00ea;
+        }
+
+        .sim-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* Таблица кредитов */
+        .credits-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .credits-table th {
+            background: rgba(80, 0, 150, 0.6);
+            color: #e0b0ff;
+            padding: 12px 15px;
+            text-align: left;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px; 
+            border-bottom: 2px solid #b000ff;
+        }
+
+        .credits-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #4a0080;
+            color: #d9b3ff;
+            letter-spacing: 0.5px;
+        }
+
+        .credits-table tr {
+            transition: 0.2s;
+        }
+
+        .credits-table tbody tr:hover {
+            background: rgba(100, 0, 200, 0.2);
+        }
+
+        .credit-value {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffb3ff;
+            text-shadow: 0 0 10px #d000ff;
+            font-weight: 700;
+        }
+
+        .credits-total {
+            margin-top: 15px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .total-badge {
+            background: rgba(20, 0, 35, 0.8);
+            border: 1px solid #8000c0;
+            padding: 12px 20px;
+            border-radius: 25px;
+            color: #d9b3ff;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        } 
+
+        .total-badge span {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffb3ff;
+            text-shadow: 0 0 10px #d000ff;
+            font-weight: 700;
+        }
+
+        /* Посещаемость */
+        .attendance-bar {
+            background: rgba(20, 0, 30, 0.8);
+            border-radius: 10px;
+            height: 20px;
+            margin-top: 15px;
+            overflow: hidden;
+            border: 1px solid #5c00b0;
+        }
+
+        .attendance-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6000a0, #c000ff, #ff00ea);
+            box-shadow: 0 0 15px #c000ff;
+            border-radius: 10px;
+            width: 80%;
+            position: relative;
+            animation: fill-glow 2s infinite;
+        }
+
+        @keyframes fill-glow {
+            0%, 100% { box-shadow: 0 0 15px #c000ff; }
+            50% { box-shadow: 0 0 30px #ff00f2; }
+        }
+
+        .attendance-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            color: #b57edc;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .attendance-warning {
+            color: #ff8099;
+            text-shadow: 0 0 6px #d00040;
+        }
+
+        @media (max-width: 600px) {
+            .week-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+
+        <header>
+            <h1 class="page-title">Система обучения</h1>
+        </header>
+
+        <!-- Срок обучения -->
+        <div class="info-block">
+            <h2 class="block-title">Срок обучения</h2>
+            <span class="duration-badge">5 ЛЕТ</span>
+            <p class="duration-sub">10 семестров. Каждый курс становится сложнее не только по предметам, но и по уровню допуска к информации и лабораториям.</p>
+        </div>
+
+        <!-- Учебный год -->
+        <div class="info-block">
+            <h2 class="block-title">Учебный год</h2>
+            <p style="color: #b57edc; margin-bottom: 15px; letter-spacing: 1px;">Год делится на 2 семестра.</p>
+
+            <div class="semester-grid">
+                <div class="semester-card">
+                    <div class="semester-name">Осенний семестр</div>
+                    <div class="semester-dates">1 сентября — 25 января</div>
+                    <div class="semester-after">
+                        После него:<br>
+                        • Зимняя экзаменационная сессия<br>
+                        • Около 2 недель каникул
+                    </div>
+                </div>
+                <div class="semester-card">
+                    <div class="semester-name">Весенний семестр</div>
+                    <div class="semester-dates">10 февраля — 30 июня</div>
+                    <div class="semester-after">
+                        После него:<br>
+                        • Летняя сессия<br>
+                        • Около двух месяцев каникул
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Учебная неделя -->
+        <div class="info-block">
+            <h2 class="block-title">Учебная неделя</h2>
+
+            <div class="week-grid">
+                <div class="day-cell day-work"><span class="day-name">ПН</span>Занятия</div>
+                <div class="day-cell day-work"><span class="day-name">ВТ</span>Занятия</div>
+                <div class="day-cell day-work"><span class="day-name">СР</span>Занятия</div>
+                <div class="day-cell day-work"><span class="day-name">ЧТ</span>Занятия</div>
+                <div class="day-cell day-work"><span class="day-name">ПТ</span>Занятия</div>
+                <div class="day-cell day-sat">
+                    <span class="day-name">СБ</span>
+                    Доп. занятия<br>
+                    Пересдачи<br>
+                    Факультативы<br>
+                    Практика
+                </div>
+                <div class="day-cell day-off"><span class="day-name">ВС</span>Выходной</div>
+            </div>
+        </div>
+
+        <!-- Формат занятий -->
+        <div class="info-block">
+            <h2 class="block-title">Формат занятий</h2>
+            <p style="color: #b57edc; margin-bottom: 10px; letter-spacing: 1px;">Каждый предмет состоит из нескольких типов занятий.</p>
+
+            <ul class="format-list">
+                <li class="format-item">
+                    <div class="format-name">Лекция</div>
+                    <div class="format-desc">Большой поток. Преподаватель объясняет теорию.</div>
+                    <span class="format-tag">90 минут</span>
+                </li>
+                <li class="format-item">
+                    <div class="format-name">Семинар</div>
+                    <div class="format-desc">20–30 человек. Разбор дел. Дискуссии. Ответы студентов.</div>
+                </li>
+                <li class="format-item">
+                    <div class="format-name">Практическое занятие</div>
+                    <div class="format-desc">Самая важная часть. Исследование места преступления, анализ крови, работа с уликами, моделирование допроса, изучение повреждённого андроида.</div>
+                </li>
+                <li class="format-item">
+                    <div class="format-name">Лабораторная работа</div>
+                    <div class="format-desc">Работа в специализированных кабинетах. Все результаты автоматически загружаются в личное дело студента.</div>
+                </li>
+                <li class="format-item">
+                    <div class="format-name">Симуляция</div>
+                    <div class="format-desc">Особенность именно этого университета. Студентов помещают в виртуальную среду. Нужно за ограниченное время раскрыть преступление.</div>
+                </li>
+            </ul>
+
+            <!-- Пример симуляции -->
+            <div class="sim-block">
+                <p style="color: #c080ff; font-weight: 600; letter-spacing: 1px; margin-bottom: 5px;">Пример симуляции: Убийство в квартире</p>
+                <p style="color: #9a6dc9; font-size: 0.9rem; margin-bottom: 12px;">Дано: квартира, свидетели, записи камер, труп, ложные улики. Задача — раскрыть преступление за отведённое время.</p>
+                <div class="sim-example">
+                    <div class="sim-element">Квартира</div>
+                    <div class="sim-element">Свидетели</div>
+                    <div class="sim-element">Записи камер</div>
+                    <div class="sim-element">Труп</div>
+                    <div class="sim-element">Ложные улики</div>
+                    <div class="sim-element">Ограниченное время</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кредиты -->
+        <div class="info-block">
+            <h2 class="block-title">Кредиты</h2>
+            <p style="color: #b57edc; margin-bottom: 15px; letter-spacing: 1px;">Один предмет даёт определённое количество академических кредитов. Если предмет не сдан — кредиты не начисляются.</p>
+
+            <table class="credits-table">
+                <thead>
+                    <tr>
+                        <th>Предмет</th>
+                        <th>Кредиты</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Криминалистика</td>
+                        <td class="credit-value">8</td>
+                    </tr>
+                    <tr>
+                        <td>Судебная медицина</td>
+                        <td class="credit-value">6</td>
+                    </tr>
+                    <tr>
+                        <td>Тактика</td>
+                        <td class="credit-value">5</td>
+                    </tr>
+                    <tr>
+                        <td>Уголовное право</td>
+                        <td class="credit-value">5</td>
+                    </tr>
+                    <tr>
+                        <td>Кибербезопасность</td>
+                        <td class="credit-value">7</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="credits-total">
+                <div class="total-badge">За семестр: <span>~30 кредитов</span></div>
+                <div class="total-badge">За всё обучение: <span>~300 кредитов</span></div>
+            </div>
+        </div>
+
+        <!-- Посещаемость -->
+        <div class="info-block">
+            <h2 class="block-title">Посещаемость</h2>
+            <p style="color: #b57edc; margin-bottom: 10px; letter-spacing: 1px;">Минимум <strong style="color: #e0b0ff; text-shadow: 0 0 8px #b000ff;">80%</strong> посещений.</p>
+
+            <div class="attendance-bar">
+                <div class="attendance-fill"></div>
+            </div>
+            <div class="attendance-label">
+                <span>0%</span>
+                <span style="color: #e0b0ff; text-shadow: 0 0 8px #b000ff;">80% — минимум</span>
+                <span>100%</span>
+            </div>
+
+            <p style="color: #ff8099; margin-top: 15px; font-size: 0.95rem; letter-spacing: 0.5px;">
+                Если меньше — студент <span class="attendance-warning">не допускается к экзамену</span>. Сначала обязан закрыть пропуски дополнительными заданиями.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

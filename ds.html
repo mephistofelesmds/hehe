@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Натхель Эдвинс • досье</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0010;
+      background-image: 
+        radial-gradient(circle at 50% 50%, #1a0030 0%, #05000a 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(100, 0, 200, 0.03) 2px, rgba(100, 0, 200, 0.03) 4px);
+      font-family: 'Exo 2', sans-serif;
+      color: #e0c0ff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.2) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 999;
+      animation: scan 8s linear infinite;
+    }
+
+    @keyframes scan {
+      from { background-position: 0 0; }
+      to { background-position: 0 100%; }
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      border: 2px solid #7a00ff;
+      border-radius: 8px;
+      background: rgba(10, 0, 20, 0.8);
+      backdrop-filter: blur(5px);
+      box-shadow: 
+        0 0 30px rgba(120, 0, 255, 0.4),
+        inset 0 0 30px rgba(120, 0, 255, 0.1),
+        0 0 100px rgba(180, 0, 255, 0.2);
+      padding: 40px 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #b57edc;
+      text-decoration: none;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      border: 1px solid #5c00b0;
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-shadow: 0 0 5px #8000c0;
+    }
+
+    .page-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      color: #d4a0ff;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      border-bottom: 2px solid #7a00ff;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    .info-block {
+      background: rgba(15, 0, 30, 0.8);
+      border: 1px solid #4a0080;
+      border-radius: 6px;
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: 0.3s;
+    }
+
+    .block-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: #e0b0ff;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #5c00b0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .block-icon {
+      font-size: 1.8rem;
+      text-shadow: 0 0 15px #d000ff;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .stat-item {
+      background: rgba(25, 0, 50, 0.7);
+      border: 1px solid #5c00b0;
+      border-radius: 6px;
+      padding: 14px;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #b57edc;
+    }
+
+    .stat-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffb3ff;
+    }
+
+    .scars-highlight {
+      background: rgba(180, 0, 80, 0.15);
+      border-left: 4px solid #d000ff;
+      padding: 15px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 15px;
+      color: #e0b0ff;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .quote-block {
+      font-style: italic;
+      background: rgba(60, 0, 110, 0.4);
+      border-left: 3px solid #a000ff;
+      padding: 18px 22px;
+      border-radius: 0 6px 6px 0;
+      color: #d9b3ff;
+      margin-top: 12px;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .location-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(30, 0, 60, 0.8);
+      border: 1px solid #7a00ff;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      color: #e0b0ff;
+      letter-spacing: 1px;
+      margin: 15px 0 5px;
+    }
+
+    .role-badge {
+      display: inline-block;
+      background: rgba(120, 0, 200, 0.3);
+      border: 1px solid #b000ff;
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      color: #ffb3ff;
+    }
+
+    .timeline {
+      border-left: 2px solid #7a00ff;
+      margin: 20px 0 10px;
+      padding-left: 25px;
+    }
+
+    .timeline-item {
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "◆";
+      position: absolute;
+      left: -33px;
+      color: #c000ff;
+      font-size: 1.2rem;
+      text-shadow: 0 0 12px #ff00ea;
+      background: #0a0010;
+      padding: 2px;
+    }
+
+    .timeline-year {
+      font-family: 'Orbitron', sans-serif;
+      color: #d4a0ff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .timeline-text {
+      color: #d9b3ff;
+      margin-top: 5px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px 15px;
+      }
+      .page-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scanline"></div>
+  <div class="container">
+    <a href="index.html" class="back-link">← На главную</a>
+
+    <header style="margin-bottom: 30px;">
+      <h1 class="page-title">НАТХЕЛЬ ЭДВИНС</h1>
+      <p style="color: #b57edc; letter-spacing: 2px; margin-top: 8px;">профессор и историк</p>
+    </header>
+
+    <!-- Общая информация -->
+    <div class="info-block">
+      <h2 class="block-title">
+        Основное
+      </h2>
+      <div class="stat-grid">
+        <div class="stat-item"><span class="stat-label">Имя</span><span class="stat-value">Натхель<br>Эдвинс</span></div>
+        <div class="stat-item"><span class="stat-label">Возраст</span><span class="stat-value">37 лет</span></div>
+        <div class="stat-item"><span class="stat-label">Пол</span><span class="stat-value">Мужской</span></div>
+        <div class="stat-item"><span class="stat-label">Рост</span><span class="stat-value">2,30 м</span></div>
+        <div class="stat-item"><span class="stat-label">Роль</span><span class="stat-value">Второс-<br>тепенный</span></div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 15px;">
+        <div style="flex: 1; min-width: 200px;">
+          <p style="color: #d9b3ff; line-height: 1.7;">
+            <span style="color: #d4a0ff; font-weight: 600;">Внешность:</span> Высокий, худощавый мужчина с бледной кожей, характерной для жителей Грейзона. Глаза — черно-белые. Черные волосы часто падают на лицо.
+          </p>
+        </div>
+      </div>
+
+      <div class="scars-highlight">
+        <div>
+          <strong style="color: #ffb3ff; letter-spacing: 1px;">Особые приметы</strong><br />
+          Шрамы от ожогов на руках: кисти и предплечья покрыты келоидными рубцами, похожими на расплавленный воск. Тянутся от пальцев до локтей. Руки дрожат при стрессе. Постоянно носит плотные черные перчатки.
+        </div>
+      </div>
+    </div>
+
+    <!-- Характер и психотип -->
+    <div class="info-block">
+      <h2 class="block-title">
+        Психологический профиль
+      </h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 25px;">
+        <p style="flex: 2; color: #d9b3ff; line-height: 1.7;">
+          Внешне — воплощение спокойствия. Предпочитает роль наблюдателя, редко вступает в конфликты. Это спокойствие — маска для хронического стресса и тревожности. Глубоко циничен, разочарован, не верит в перемены. Интеллектуал старой закалки, ценящий книги и живое общение. Вокруг него всегда витает аура уставшего человека. Переодически прикуривает сигареты.
+        </p>
+      </div>
+    </div>
+
+    <!-- Место проживания и работы -->
+    <div class="info-block">
+      <h2 class="block-title">
+        Место и статус
+      </h2>
+      <div class="location-tag">
+        Грейзон, юго-западный сектор
+      </div>
+      <p style="color: #b57edc; margin: 10px 0 15px; font-size: 0.95rem;">
+        Тесная квартира в старом, обшарпанном доме с постоянно работающим генератором.
+      </p>
+      
+      <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+        <span style="font-family: 'Orbitron', sans-serif; color: #d4a0ff; letter-spacing: 1px;">МЕСТО РАБОТЫ:</span>
+        <span class="role-badge">Университет Грейзона</span>
+      </div>
+      <p style="color: #d9b3ff; margin-top: 12px; font-style: italic;">
+        Использует лекции, чтобы поднимать запрещённые вопросы. Даёт студентам ключи к пониманию реальной истории, которую корпорации стерли из сети.
+      </p>
+    </div>
+
+    <!-- История -->
+    <div class="info-block">
+      <h2 class="block-title">
+        История персонажа
+      </h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">Детство</div>
+          <div class="timeline-text">
+            Родился в семье инженеров-технологов. Вырос под стерильным куполом, но чувствовал себя чужим. Интересовался не технологией, а её влиянием на людей. Предпочитал библиотеки и архивы симуляциям.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Исследовательский отдел «NEURODYNE»</div>
+          <div class="timeline-text">
+            Анализировал исторические прецеденты для внедрения технологий — по сути, создавал «красивые» обоснования для антигуманных проектов. Смотрел на это сквозь пальцы, пока не столкнулся с проектом «Социальная оптимизация».
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Попытки</div>
+          <div class="timeline-text">
+            Понял, что его работа помогает уничтожать жизни. Создал резервную копию компрометирующих данных и планировал передать их журналистам. Корпорация вычислила его раньше.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Наказание</div>
+          <div class="timeline-text">
+            Ему сохранили жизнь, но навсегда изгнали в Грейзон. В качестве «напоминания» его руки держали в расплавленном пластике, намеренно повредив нервные окончания.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Профессор в Грейзоне</div>
+          <div class="timeline-text">
+            Единственное место, куда ему был открыт путь — университет. Теперь он тихо и незаметно продолжает начатое: рассказывает студентам правду, которую корпорации пытались стереть.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
